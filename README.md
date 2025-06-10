@@ -1,102 +1,65 @@
-**Linear Regression**
+## [PYTHON] Linear Regression
 
 Thuật toán hồi quy tuyến tính với 2 phương pháp giải chính xác phương
 trình và phương pháp suy giảm độ dốc để tìm ra phương trình hồi quy. Hai
 phương pháp này đều có ưu và nhược điểm riêng.
 
-  ----------------------- ----------------------- -----------------------
-  **Phương pháp**         **Normal Equation       **Gadient Descent
-                          Linear Regression**     Linear Regression**
+|                 |                                                                                                          |                                                                                                                         |
+|-----------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| **Phương pháp** | **Normal Equation Linear Regression**                                                                    | **Gadient Descent Linear Regression**                                                                                   |
+| **Ưu điểm**     | Tìm ra nghiệm tối ưu toàn cục mà không cần lặp, vì đây là giải pháp đóng.                                | Phù hợp với tập dữ liệu lớn (n lớn) hoặc số đặc trưng lớn (p lớn), vì không cần tính toán nghịch đảo ma trận.           |
+|                 | Không cần chọn learning rate hay số lần lặp như gradient descent.                                        | Có thể áp dụng cho các bài toán không có nghiệm đóng hoặc các mô hình phức tạp hơn như hồi quy phi tuyến.               |
+|                 | Phù hợp khi số lượng mẫu (n) và số đặc trưng (p) nhỏ, vì tính toán ma trận đơn giản.                     | Chỉ cần lưu trữ gradient và tham số tại mỗi bước lặp, không cần lưu ma trận lớn.                                        |
+| **Nhược điểm**  | Yêu cầu tính toán nghịch đảo ma trận, có độ phức tạp O(p^3), không khả thi với số đặc trưng lớn (p lớn). | Cần điều chỉnh learning rate, số lần lặp, hoặc các tham số khác. Chọn sai có thể dẫn đến hội tụ chậm hoặc không hội tụ. |
+|                 | Khi số lượng mẫu (n) hoặc đặc trưng (p) lớn, việc tính toán trở nên tốn kém về bộ nhớ và thời gian.      | Có thể bị kẹt ở cực tiểu địa phương dù hiếm trong hồi quy tuyến tính vì hàm mất mát là lồi.                             |
 
-  **Ưu điểm**             Tìm ra nghiệm tối ưu    Phù hợp với tập dữ liệu
-                          toàn cục mà không cần   lớn (n lớn) hoặc số đặc
-                          lặp, vì đây là giải     trưng lớn (p lớn), vì
-                          pháp đóng.              không cần tính toán
-                                                  nghịch đảo ma trận.
+## Dưới đây là quá trình giải
 
-                          Không cần chọn learning Có thể áp dụng cho các
-                          rate hay số lần lặp như bài toán không có
-                          gradient descent.       nghiệm đóng hoặc các mô
-                                                  hình phức tạp hơn như
-                                                  hồi quy phi tuyến.
+<img src="result/page1.png" style="width:6.26772in;height:8.45833in" />
 
-                          Phù hợp khi số lượng    Chỉ cần lưu trữ
-                          mẫu (n) và số đặc trưng gradient và tham số tại
-                          (p) nhỏ, vì tính toán   mỗi bước lặp, không cần
-                          ma trận đơn giản.       lưu ma trận lớn.
+<img src="result/page2.png" style="width:6.26772in;height:8.29167in" />
 
-  **Nhược điểm**          Yêu cầu tính toán       Cần điều chỉnh learning
-                          nghịch đảo ma trận, có  rate, số lần lặp, hoặc
-                          độ phức tạp O(p\^3),    các tham số khác. Chọn
-                          không khả thi với số    sai có thể dẫn đến hội
-                          đặc trưng lớn (p lớn).  tụ chậm hoặc không hội
-                                                  tụ.
+<img src="result/page3.png" style="width:6.26772in;height:8.95833in" />
 
-                          Khi số lượng mẫu (n)    Có thể bị kẹt ở cực
-                          hoặc đặc trưng (p) lớn, tiểu địa phương dù hiếm
-                          việc tính toán trở nên  trong hồi quy tuyến
-                          tốn kém về bộ nhớ và    tính vì hàm mất mát là
-                          thời gian.              lồi.
-  ----------------------- ----------------------- -----------------------
+<img src="result/page4.png" style="width:6.26772in;height:8.36111in" />
 
-Dưới đây là quá trình giải.
+<img src="result/page5.png" style="width:6.26772in;height:9.70833in" />
 
-![](media/image1.png){width="6.267716535433071in"
-height="8.458333333333334in"}
-
-![](media/image2.png){width="6.267716535433071in"
-height="8.291666666666666in"}
-
-![](media/image3.png){width="6.267716535433071in"
-height="8.958333333333334in"}
-
-![](media/image4.png){width="6.267716535433071in"
-height="8.36111111111111in"}
-
-![](media/image5.png){width="6.267716535433071in"
-height="9.708333333333334in"}
-
-![](media/image6.png){width="3.7in" height="3.604861111111111in"}
+## Test
+<img src="result/data_points_small.png" style="width:3.7in;height:3.60486in" />
 
 *Dữ liệu kiểm thử*
 
 Kiểm tra với dữ liệu kiểm thử phương trình fx được tính toán kết quả như
 thế nào và dự đoán cho một điểm chưa có trong dữ liệu huấn luyện x=5.5 .
 
-![](media/image7.png){width="3.9130172790901137in"
-height="3.6684536307961504in"}
+<img src="result/Linear_Regression_predict_small_data.png" style="width:3.91302in;height:3.66845in" />
 
 *Kết quả với Normal Equation Linear Regression*
 
-![](media/image8.png){width="3.8229166666666665in"
-height="3.526388888888889in"}
+<img src="result/GD_Linear_Regression_predict_small_data.png" style="width:3.82292in;height:3.52639in" />
 
 *Kết quả với Gadient Descent Linear Regression*
 
-![](media/image9.png){width="3.8765583989501313in"
-height="3.6680555555555556in"}
+<img src="result/SKLEARN_Linear_Regression_predict_small_data.png" style="width:3.87656in;height:3.66806in" />
 
 Kết quả với Linear Regression sử dụng Scikit-learn
 
-![](media/image10.png){width="6.692913385826771in"
-height="0.5416666666666666in"}
+<img src="https://github.com/Tung003/Linear-Regression/blob/main/result/predict_y.png" style="width:6.69291in;height:0.54167in" />
 
 *Kết quả dự đoán*
 
 Kiểm thử với bộ dữ liệu 700 sample.
 
-![](media/image11.png){width="4.272391732283465in"
-height="4.272391732283465in"}
+<img src="result/data_points.png" style="width:4.27239in;height:4.27239in" />
 
 *Dữ liệu kiểm thử*
 
-![](media/image12.png){width="4.155212160979877in"
-height="4.155212160979877in"}
+<img src="result/Linear_Regression_predict.png" style="width:4.15521in;height:4.15521in" />
 
 *Kết quả với Normal Equation Linear Regression*
 
-![](media/image13.png){width="4.223958880139983in"
-height="4.223958880139983in"}
+<img src="result/GD_Linear_Regression_predict.png" style="width:4.22396in;height:4.22396in" />
 
 *Kết quả với Gadient Descent Linear Regression*
 
